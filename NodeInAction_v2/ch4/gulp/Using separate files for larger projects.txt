@@ -1,0 +1,20 @@
+Use node's module system for loading plugins. Can be used to split up large gulpfiles.
+
+Steps:
+	1. Create a folder called gulp, and a subfolder called tasks.
+	2. Define your tasks by using the usual gulp.task() syntax in separate files. One file per task is agood rule of thumb.
+	3. Create a file called gulp/index.js to require each Gulp task file.
+	4. Require the gulp/index.js file in gulpfile.js
+	
+The file tree should look like this:
+
+	gulpfile.js
+	gulp/
+	gulp/index.js
+	gulp/tasks/development-build.js
+	gulp/tasks/production-build.js
+	
+Can be paired with the gulp-help module to document Gulp tasks
+
+
+	
