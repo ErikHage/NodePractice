@@ -1,0 +1,16 @@
+{
+  "name": "ch15_dateAndTime",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dates.js",
+  "dependencies": {
+    "moment-timezone": "^0.5.13"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
