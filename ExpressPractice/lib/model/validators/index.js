@@ -1,0 +1,1 @@
+exports.beer = require('./beer');
