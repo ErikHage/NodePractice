@@ -5,6 +5,7 @@ module.exports = {
     ok: 200,
     created: 201,
     noContent: 204,
+    found: 302,
     badRequest: 400,
     unauthorized: 403,
     notFound: 404,

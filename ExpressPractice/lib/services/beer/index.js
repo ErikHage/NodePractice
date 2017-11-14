@@ -1,36 +1,38 @@
-const constants = require('../../helpers/constants');
-const beersMap = require('../../testData/beers');
 const Promise = require('bluebird');
+const BeersDataSource = require('../../datasource/beer');
 
 class BeerService {
 
-  static createBeer(beer) {
-    console.log('In BeerService.createBeer');
-    return Promise.coroutine(function* createBeer() {
-      try {
-        console.log(`Beer created: ${beer}`);
-        return Promise.resolve(beer);
-      } catch(err) {
-        return Promise.reject(`Error saving beer ${beer}`);
-      }
-    });
+  createBeer(beer) {
+    console.log(`In BeerService.createBeer: ${JSON.stringify(beer)}`);
+    return Promise.coroutine(function* insertBeer() {
+      return yield BeersDataSource.insertBeer(beer)
+        .catch((err) => console.log(`Error inserting beer: ${err.message}`));
+    })();
   }
 
-  static getBeer(beerId) {
+  getBeerById(beerId) {
     console.log(`Getting beer: ${beerId}`);
-    if(beersMap.has(beerId)) {
-      return {};
-    } else {
-      return beersMap.get();
-    }
+    return Promise.coroutine(function* getBeerById() {
+      return yield BeersDataSource.getBeerById(beerId)
+        .catch((err) => console.log(`Error reading beer: ${err.message}`));
+    })();
   }
 
-  static updateBeer(beer) {
-    console.log(`Beer updated: ${beer}`);
+  updateBeer(beer) {
+    console.log(`Updating Beer: ${JSON.stringify(beer)}`);
+    return Promise.coroutine(function* updateBeer() {
+      return yield BeersDataSource.updateBeer(beer)
+        .catch((err) => console.log(`Error updating beer: ${err.message}`));
+    })();
   }
 
-  static deleteBeer(beerId) {
+  deleteBeer(beerId) {
     console.log(`Deleting beer: ${beerId}`);
+    return Promise.coroutine(function* deleteBeer() {
+      return yield BeersDataSource.deleteBeer(beerId)
+        .catch((err) => console.log(`Error deleting beer: ${err.message}`));
+    })();
   }
 
 }

@@ -1,1 +1,1 @@
-exports.beer = require('./beer');
+exports.beer = require('./beer/index');

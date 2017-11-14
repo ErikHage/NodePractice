@@ -17,6 +17,12 @@ class Constraints {
     });
   }
 
+  static validateParams(schemaObj) {
+    return Constraints.validateInputs({
+      params: schemaObj,
+    });
+  }
+
 }
 
 module.exports = Constraints;
