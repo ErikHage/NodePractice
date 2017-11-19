@@ -1,9 +1,7 @@
-const Promise = require('bluebird');
 const constants = require('../../helpers/constants');
 const uuid = require('uuid/v4');
 
 const BeerService = require('../../services/beer');
-const beerService = new BeerService();
 
 class BeersController {
 
@@ -17,9 +15,7 @@ class BeersController {
       description: req.body.description ? req.body.description : '',
     };
 
-    console.log(`In BeersController.createBeer with beer: ${beer.name}`);
-
-    return beerService.createBeer(beer)
+    return BeerService.createBeer(beer)
       .then((data) => res.status(constants.statusCodes.created).send(data))
       .catch(next);
   }
@@ -27,9 +23,7 @@ class BeersController {
   getBeerById(req, res, next) {
     const beerId = req.params.beerId;
 
-    console.log(`In BeersController.getBeerById with beerId: ${beerId}`);
-
-    return beerService.getBeerById(beerId)
+    return BeerService.getBeerById(beerId)
       .then((beer) => {
         if(beer !== undefined) {
           res.status(constants.statusCodes.ok).send(beer);
@@ -50,9 +44,7 @@ class BeersController {
       description: req.body.description ? req.body.description : '',
     };
 
-    console.log(`In BeersController.updateBeer with beer: ${beer.name}`);
-
-    return beerService.updateBeer(beer)
+    return BeerService.updateBeer(beer)
       .then((data) => res.status(constants.statusCodes.ok).send(data))
       .catch(next);
   }
@@ -60,9 +52,7 @@ class BeersController {
   deleteBeer(req, res, next) {
     const beerId = req.params.beerId;
 
-    console.log(`In BeersController.deleteBeer with beerId: ${beerId}`);
-
-    return beerService.deleteBeer(beerId)
+    return BeerService.deleteBeer(beerId)
       .then((beer) => res.sendStatus(constants.statusCodes.ok))
       .catch(next);
   }

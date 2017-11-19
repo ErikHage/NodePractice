@@ -3,38 +3,41 @@ const BeersDataSource = require('../../datasource/beer');
 
 class BeerService {
 
-  createBeer(beer) {
-    console.log(`In BeerService.createBeer: ${JSON.stringify(beer)}`);
+  static createBeer(beer) {
     return Promise.coroutine(function* insertBeer() {
       return yield BeersDataSource.insertBeer(beer)
-        .catch((err) => console.log(`Error inserting beer: ${err.message}`));
+        .catch((err) => {
+          throw new Error(`Error inserting beer: ${err.message}`, err);
+        });
     })();
   }
 
-  getBeerById(beerId) {
-    console.log(`Getting beer: ${beerId}`);
+  static getBeerById(beerId) {
     return Promise.coroutine(function* getBeerById() {
       return yield BeersDataSource.getBeerById(beerId)
-        .catch((err) => console.log(`Error reading beer: ${err.message}`));
+        .catch((err) => {
+          throw new Error(`Error reading beer: ${err.message}`, err);
+        });
     })();
   }
 
-  updateBeer(beer) {
-    console.log(`Updating Beer: ${JSON.stringify(beer)}`);
+  static updateBeer(beer) {
     return Promise.coroutine(function* updateBeer() {
       return yield BeersDataSource.updateBeer(beer)
-        .catch((err) => console.log(`Error updating beer: ${err.message}`));
+        .catch((err) => {
+          throw new Error(`Error updating beer: ${err.message}`, err);
+        });
     })();
   }
 
-  deleteBeer(beerId) {
-    console.log(`Deleting beer: ${beerId}`);
+  static deleteBeer(beerId) {
     return Promise.coroutine(function* deleteBeer() {
       return yield BeersDataSource.deleteBeer(beerId)
-        .catch((err) => console.log(`Error deleting beer: ${err.message}`));
+        .catch((err) => {
+          throw new Error(`Error deleting beer: ${err.message}`, err);
+        });
     })();
   }
-
 }
 
 module.exports = BeerService;
