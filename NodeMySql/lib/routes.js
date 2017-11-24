@@ -1,18 +1,11 @@
 const express = require('express');
+
 const router = express.Router();
 
-const Database = require('./lib/database');
-const Promise = require('bluebird');
+const Database = require('./database/index');
+const rowMapper = require('./datasource/beers/row-mapper');
 
-const rowMapper = require('./lib/datasource/beers/row-mapper');
-
-const sendError = (statusCode, message) => {
-  res.status(statusCode).send({
-    message: message,
-  });
-};
-
-router.get('/',(req, res, next) => {
+router.get('/', (req, res) => {
   res.status(200).send({
     message: 'Service is running!',
   });
@@ -22,13 +15,13 @@ router.get('/',(req, res, next) => {
 //   const beer = req.body
 // });
 
-router.get('/beer/:id', (req, res, next) => {
-  const id = req.params.id;
+router.get('/beer/:id', (req, res) => {
+  const { id } = req.params;
   const sql = 'SELECT * FROM beers WHERE id = ?';
 
-  Database.execQuery(sql, [ id ])
+  Database.execQuery(sql, [id])
     .then((data) => {
-      if(data.results.length < 1) {
+      if (data.results.length < 1) {
         throw new Error('No data returned');
       }
       res
@@ -39,7 +32,7 @@ router.get('/beer/:id', (req, res, next) => {
       res
         .status(err.status || 500)
         .send({ message: err.message });
-    })
+    });
 });
 
 module.exports = router;

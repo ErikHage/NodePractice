@@ -1,13 +1,12 @@
 const mysql = require('mysql');
 
-const connection = () => {
-  return mysql.createConnection({
+const connection = () =>
+  mysql.createConnection({
     host: 'localhost',
     user: 'ehage',
     password: 'ASdot786!',
     database: 'beers',
   });
-};
 
 class Database {
   static execQuery(sql, params) {
@@ -22,8 +21,8 @@ class Database {
         }
 
         resolve({
-          results: results,
-          fields: fields,
+          results,
+          fields,
         });
       });
 

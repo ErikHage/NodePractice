@@ -3,7 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "lint": "eslint lib spec",
+    "lint-fix": "eslint --fix lib spec",
+    "test-unit": "mocha --require spec/helpers/init spec/unit/**/*.spec.js",
+    "test-with-report": "mocha --require spec/helpers/init -R mocha-multi --reporter-options spec=,xunit=spec/reports/xunit.xml spec/unit/**/*.spec.js",
+    "coverage": "nyc --all --reporter text --reporter html npm run test-unit",
+    "coverage-check": "nyc --all --check-coverage --reporter cobertura --reporter text-summary npm run test-with-report"
   },
   "dependencies": {
     "bluebird": "^3.5.1",
@@ -14,6 +20,20 @@
     "express": "~4.15.5",
     "morgan": "~1.9.0",
     "mysql": "^2.15.0",
-    "serve-favicon": "~2.4.5"
+    "nyc": "^11.3.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "dirty-chai": "^2.0.1",
+    "eslint": "^4.11.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.5.1",
+    "mocha": "^4.0.1",
+    "mocha-multi": "^0.11.1",
+    "nock": "^9.1.0",
+    "sinon": "^4.1.2",
+    "sinon-chai": "^2.14.0"
   }
 }
