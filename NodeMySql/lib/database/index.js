@@ -1,11 +1,12 @@
 const mysql = require('mysql');
+const constants = require('../helper/constants');
 
 const connection = () =>
   mysql.createConnection({
-    host: 'localhost',
-    user: 'ehage',
-    password: 'ASdot786!',
-    database: 'beers',
+    host: constants.host,
+    user: constants.user,
+    password: constants.password,
+    database: constants.database,
   });
 
 class Database {
@@ -15,15 +16,11 @@ class Database {
 
       conn.connect();
 
-      conn.query(sql, params, (err, results, fields) => {
+      conn.query(sql, params, (err, results) => {
         if (err) {
           reject(new Error('Error during execQuery', err));
         }
-
-        resolve({
-          results,
-          fields,
-        });
+        resolve(results);
       });
 
       conn.end();
