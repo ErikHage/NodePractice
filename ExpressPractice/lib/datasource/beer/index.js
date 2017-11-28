@@ -1,6 +1,5 @@
 'use strict';
 
-const Promise = require('bluebird');
 const rowMapper = require('./row-mapper');
 const Database = require('../../database');
 

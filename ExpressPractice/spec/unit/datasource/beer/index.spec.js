@@ -1,7 +1,5 @@
 'use strict';
 
-const expect = require('chai').expect;
-const sinon = require('sinon');
 const Promise = require('bluebird');
 
 const BeerDataSource = require('../../../../lib/datasource/beer');

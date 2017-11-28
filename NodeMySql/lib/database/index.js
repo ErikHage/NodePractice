@@ -17,9 +17,11 @@ class Database {
       conn.connect();
 
       conn.query(sql, params, (err, results) => {
+        console.log(err);
         if (err) {
           reject(new Error('Error during execQuery', err));
         }
+        console.log(results);
         resolve(results);
       });
 
