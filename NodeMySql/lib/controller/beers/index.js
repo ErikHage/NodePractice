@@ -1,37 +1,29 @@
-const BeersService = require('../../service/beers');
+const beersService = require('../../service/beers');
 
 class BeersController {
-  static createBeer(req, res) {
+  async createBeer(req, res) {
     const beer = req.body;
-
-    BeersService.createBeer(beer)
-      .then((data) => {
-        res
-          .status(201)
-          .send(data);
-      })
-      .catch((err) => {
-        res
-          .status(500)
-          .send({ message: err.message });
-      });
+    const data = await beersService.createBeer(beer);
+    res.status(201).send(data);
   }
 
-  static getBeerById(req, res) {
+  async getBeerById(req, res) {
     const id = req.params.id;
+    const beer = await beersService.getBeerById(id);
+    res.status(200).send(beer);
+  }
 
-    BeersService.getBeerById(id)
-      .then((beer) => {
-        res
-          .status(200)
-          .send(beer);
-      })
-      .catch((err) => {
-        res
-          .status(404)
-          .send({ message: err.message });
-      });
+  async updateBeer(req, res) {
+    const beer = req.body;
+    const data = await beersService.updateBeer(beer);
+    res.status(200).send(data);
+  }
+
+  async deleteBeerById(req, res) {
+    const id = req.params.id;
+    const result = await beersService.deleteBeer(id);
+    res.status(200).send({ deleted: result });
   }
 }
 
-module.exports = BeersController;
+module.exports = new BeersController();

@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 const beerId = {
-  id: Joi.string().required(),
+  id: Joi.number().required(),
 };
 
 const insertBeer = {
@@ -12,7 +12,17 @@ const insertBeer = {
   description: Joi.string().optional(),
 };
 
+const updateBeer = {
+  id: Joi.number().required(),
+  name: Joi.string().required(),
+  style: Joi.string().required(),
+  abv: Joi.number().required(),
+  ibu: Joi.number().required(),
+  description: Joi.string().optional(),
+};
+
 module.exports = {
   beerId,
   insertBeer,
+  updateBeer,
 };

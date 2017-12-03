@@ -1,8 +1,10 @@
 const constants = {
-  host: 'localhost',
-  user: 'ehage',
-  password: 'ASdot786!',
-  database: 'beers',
+  mysqlConnection: {
+    host: process.env.MYSQL_HOST,
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE,
+  },
 };
 
 module.exports = constants;

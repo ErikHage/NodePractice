@@ -1,20 +1,21 @@
-const Promise = require('bluebird');
-const BeersDataSource = require('../../datasource/beers');
+const beersDataSource = require('../../datasource/beers');
 
 class BeersService {
-  static createBeer(beer) {
-    return Promise.coroutine(function* createBeer() {
-      return yield BeersDataSource.insertBeer(beer)
-        .catch((err) => new Error('Error creating beer', err));
-    })();
+  async createBeer(beer) {
+    return await beersDataSource.insertBeer(beer);
   }
 
-  static getBeerById(id) {
-    return Promise.coroutine(function* getBeerById() {
-      return yield BeersDataSource.readBeerById(id)
-        .catch((err) => new Error(`Error getting beer with id: ${id}`, err));
-    })();
+  async getBeerById(id) {
+    return await beersDataSource.readBeerById(id);
+  }
+
+  async updateBeer(beer) {
+    return await beersDataSource.updateBeer(beer);
+  }
+
+  async deleteBeer(id) {
+    return await beersDataSource.deleteBeer(id);
   }
 }
 
-module.exports = BeersService;
+module.exports = new BeersService();
