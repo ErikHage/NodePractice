@@ -1,0 +1,30 @@
+{
+  "name": "graphql-nodejs",
+  "version": "1.0.0",
+  "description": "an express server with graphql",
+  "main": "lib/app.js",
+  "scripts": {
+    "start": "node ./lib/app.js",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ErikHage/Graphql-NodeJS.git"
+  },
+  "keywords": [
+    "graphql",
+    "nodejs"
+  ],
+  "author": "Erik Hage",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "express-graphql": "^0.6.12",
+    "graphql": "^0.13.2",
+    "mariasql": "^0.2.6",
+    "serve-favicon": "^2.5.0"
+  }
+}

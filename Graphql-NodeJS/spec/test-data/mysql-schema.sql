@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS faqs (
+  id            INT UNSIGNED AUTO_INCREMENT NOT NULL,
+  priority      INT UNSIGNED NOT NULL DEFAULT 0,
+  question      VARCHAR(1000) NOT NULL,
+  answer        VARCHAR(1000) NOT NULL,
+
+  PRIMARY KEY ( id )
+);

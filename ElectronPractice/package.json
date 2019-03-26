@@ -1,0 +1,14 @@
+{
+  "name": "electronpractice",
+  "version": "1.0.0",
+  "description": "Building my first elentron app",
+  "main": "lib/app.js",
+  "scripts": {
+    "start": "electron ./lib/app.js"
+  },
+  "author": "Erik Hage",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^2.0.1"
+  }
+}

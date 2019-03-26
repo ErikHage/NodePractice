@@ -1,0 +1,18 @@
+query getFaq {
+  faq(id: 1) {
+    ...FaqFields
+  }
+}
+
+query getFaqs {
+  faqs {
+    ...FaqFields
+  }
+}
+
+fragment FaqFields on FAQ {
+    id
+    priority
+    question
+    answer
+}
